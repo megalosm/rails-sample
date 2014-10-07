@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Moving Limes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag 'application', :media => 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= content_for?(:head) ? yield(:head) : '' %>
+</head>
+<body>
+
+<header>
+  <div class="center">
+    <div id="h_l">
+      <%= link_to root_path do %>
+          <%= image_tag 'logo.png', :class => 'header_logo' %> <span>Moving Limes</span>
+      <% end %>
+    </div>
+
+    <ul id="h_menu">
+    <!--<li class="nev_menu">-->
+    <!--<%#= link_to 'News', news_topics_path, :class => ('selected' if params[:controller] == 'news_topics') %>-->
+    <!--</li>-->
+    <!--<li class="nev_menu">Movies</li>-->
+    <!--<li class="nev_menu">Series</li>-->
+      <% if current_user && current_user.role == User::ADMIN_USER %>
+        <li class="nev_menu"><%= link_to 'Edit News', news_topics_path %></li>
+      <% end %>
+    </ul>
+
+    <div id="h_r">
+      <% if current_user %>
+          <div id="user_display_name"><%= current_user.name %></div>
+          <div id="user_info_panel">
+            <div class="name"><b><%= current_user.name %></b></div>
+            <div class="email"><%= current_user.email %></div>
+            <div class="action">
+              <%= link_to 'Edit', edit_user_registration_path, :class => 'btn' %>
+              <%= link_to 'Sign out', destroy_user_session_path, method: 'delete', :class => 'btn sign_out_btn' %>
+            </div>
+          </div>
+      <% else %>
+          <%= link_to "Sign in", new_user_session_path, :id => 'user_sign_in' %>
+      <% end %>
+    </div>
+  </div>
+</header>
+
+<div id="content">
+  <div class="center">
+    <%= yield %>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+    window.users.showUserInfoPanel();
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+var $comment_count = $('.comment_count');
+$comment_count.addClass('selected');
+$comment_count.find('.count').html('<%= @news_topic_comments.length %>');
+
+$('#news_comments').html(
+        '<%=j render :template => 'news_topic_comments/show_news_topic_comments', :formats => [:html] %>'
+);

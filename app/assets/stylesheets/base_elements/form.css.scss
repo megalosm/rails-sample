@@ -1,0 +1,98 @@
+@import "config.css.scss";
+
+form {
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  textarea {
+    font-size: 13px;
+    font-family: LatoRegular, tahoma, sans-serif;
+    padding: 4px 5px;
+    border-radius: 3px;
+    border: 1px solid $border_color;
+    color: $gray180_color;
+  }
+
+  selected {
+    min-width: 100px;
+  }
+
+  .app_btn {
+    margin-right: 10px;
+  }
+
+  #error_explanation {
+    color: red;
+    margin-bottom: 10px;
+  }
+
+  .dropdown {
+    color: $gray180_color;
+  }
+}
+
+.field {
+  margin-bottom: 10px;
+
+  .sub_field {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  label {
+    color: #000000;
+    font-family: latobold;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+}
+
+input[type=text].field_error {
+  margin-right: 5px;
+  border: 1px solid rgba(255, 25, 25, 0.99);
+}
+
+.error_message {
+  color: rgba(255, 25, 25, 0.99);
+}
+
+.form_action {
+  padding-top: 10px;
+  border-top: 1px solid $border_color;
+}
+
+//.formError {
+//  .formErrorContent {
+//    background: none repeat scroll 0 0 #858585;
+//  }
+//  .formErrorArrow {
+//    div {
+//      background: none repeat scroll 0 0 #858585;
+//    }
+//  }
+//}
+
+//.ui-datepicker {
+//  margin-top: 18px;
+//
+//  td span, td a {
+//    text-align: center;
+//  }
+//}
+
+//.date_img {
+//  line-height: 14px;
+//  cursor: pointer;
+//
+//  img {
+//    width: 14px;
+//    height: 14px;
+//  }
+//}
+
+//.date_field {
+//  margin-left: 5px;
+//  vertical-align: middle;
+//  cursor: pointer;
+//}
+

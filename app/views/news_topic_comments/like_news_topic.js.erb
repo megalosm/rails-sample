@@ -1,0 +1,8 @@
+<% if @news_topic %>
+var $news_topic = $('#news_topic_stats_<%= @news_topic.id %>');
+$news_topic.find('.like_count').replaceWith(
+        '<div class="like_count user_liked"><span class="like font_icon">&#xe606</span></div>'
+);
+
+$news_topic.find('.count_like').html('<%= @news_topic.like_count %>');
+<% end %>

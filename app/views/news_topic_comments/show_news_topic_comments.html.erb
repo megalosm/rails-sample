@@ -1,0 +1,9 @@
+<% @news_topic_comments.each do |news_topic_comment| %>
+    <div class="comment" data-id="<%= news_topic_comment.id %>">
+      <div class="comment_creator">
+        <b class="name"><%= news_topic_comment.creator.name %></b>
+        <span class="created_at"><%= time_ago_in_words(news_topic_comment.created_at) %> ago</span>
+      </div>
+      <div class="comment_context"><%= news_topic_comment.context %></div>
+    </div>
+<% end %>

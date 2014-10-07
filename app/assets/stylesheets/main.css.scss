@@ -1,0 +1,55 @@
+@import "config.css.scss";
+
+body {
+  display: flex;
+  flex-flow: column nowrap;
+
+  display: -webkit-flex;
+  -webkit-flex-flow: column nowrap;
+
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  color: #222222;
+  font-family: LatoRegular, tahoma, sans-serif;
+  // background-color: $gray20_color;
+}
+
+@media all and (min-width: 1000px) {
+  body {
+    min-width: 1000px;
+  }
+}
+
+b {
+  font-family: LatoBold;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.font_icon {
+  font-family: Icon;
+}
+
+#content {
+  overflow-y: auto;
+}
+
+header, #content {
+  padding: 0 10px;
+}
+
+.center {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.new_topic_link {
+  &:hover {
+    color: $base_color;
+  }
+}

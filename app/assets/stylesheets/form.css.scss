@@ -1,0 +1,40 @@
+@import "config.css.scss";
+
+.new_news_topic, .edit_news_topic {
+  #text_bold, #preview_news_topic_btn, #edit_news_topic_btn {
+    display: inline-block;
+  }
+
+  #preview_news_topic_btn {
+    padding: 0 3px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+
+    &.selected {
+      background-color: $base70_color;
+      color: #ffffff;
+      border: 1px solid transparent;
+    }
+  }
+
+  #topic_image_upload {
+    display: none;
+  }
+
+  input[type=text], textarea {
+    width: 600px;
+  }
+
+  textarea {
+    height: 100px;
+  }
+
+  #preview_news_topic_context,
+  #preview_news_topic_short_context {
+    display: none;
+    width: 600px;
+    border: 1px solid $border_color;
+    padding: 5px;
+  }
+}

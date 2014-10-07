@@ -1,0 +1,21 @@
+
+#news_topic_page {
+  .news_topic_title {
+    max-width: 90%;
+    display: inline-block;
+  }
+
+  .action {
+    float: right;
+    font-size: 12px;
+
+    .font_icon {
+      opacity: 0.5;
+      margin: 0 5px;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

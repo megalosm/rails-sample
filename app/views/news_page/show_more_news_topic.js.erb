@@ -1,0 +1,7 @@
+<% if @news_topics.empty? %>
+$('#show_next_news_topic').replaceWith('');
+<% else %>
+$('#show_next_news_topic').replaceWith(
+        '<%=j render :template => 'news_page/show_more_news_topic', :formats => [:html] %>'
+);
+<% end %>

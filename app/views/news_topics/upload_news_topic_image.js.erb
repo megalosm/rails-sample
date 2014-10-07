@@ -1,0 +1,18 @@
+<% if @news_topic_image.errors.any? %>
+
+console.log('<%= @news_topic_image.errors.full_messages.to_sentence %>');
+
+<% else %>
+
+var $news_topic_context = $('#news_topic_context');
+var news_topic_context = $news_topic_context.val();
+
+news_topic_context = news_topic_context.replace('![<%= @news_topic_image.original_file_name %>]',
+        '<div class="news_topic_image"><%=j image_tag @news_topic_image.topic_image.url(:medium),
+        :alt => @news_topic_image.original_file_name %></div>');
+
+$news_topic_context.val(news_topic_context);
+$('#news_topic_news_main_topic_attributes_context').val($news_topic_context.val());
+
+<% end %>
+

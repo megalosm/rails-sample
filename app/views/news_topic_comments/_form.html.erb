@@ -1,0 +1,40 @@
+<%= form_for(@news_topic_comment, :remote => true) do |f| %>
+    <% if @news_topic_comment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@news_topic_comment.errors.count, "error") %> prohibited this news_topic_comment from being
+            saved:</h2>
+
+          <ul>
+            <% @news_topic_comment.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.hidden_field :news_topic_id, :value => @news_topic.id %>
+
+    <div class="field">
+      <%= f.text_area :context, :placeholder => 'Comment' %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Post', :class => 'app_btn' %>
+    </div>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+    $('.app_btn[type="submit"]').attr('disabled', 'disabled');
+
+    $('#news_topic_comment_context').keyup(function () {
+        if ($.trim($(this).val()) === '') {
+            $('.app_btn[type="submit"]').attr('disabled', 'disabled');
+        } else {
+            $('.app_btn[type="submit"]').removeAttr('disabled');
+        }
+    });
+
+    $('#new_news_topic_comment').bind('ajax:complete', function () {
+        $('#news_topic_comment_context').val('');
+        $('.app_btn[type="submit"]').attr('disabled', 'disabled');
+        $("#content").animate({ scrollTop: $('#content').find('.center').height() }, 1000);
+    });
+</script>

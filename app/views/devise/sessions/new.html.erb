@@ -1,0 +1,27 @@
+<div class="session_content session_sign_in">
+  <div class="header">Moving Limes</div>
+
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <div><%= f.email_field :email, :autofocus => true, :placeholder => 'Email' %></div><br>
+      <div><%= f.password_field :password, :placeholder => 'Password' %></div><br>
+
+      <%= content_tag(:div, flash[:error], :id => "flash_error") + '<br>'.html_safe if flash[:error] %>
+      <%= content_tag(:div, flash[:notice], :id => "flash_notice") + '<br>'.html_safe if flash[:notice] %>
+      <%= content_tag(:div, flash[:alert], :id => "flash_alert") + '<br>'.html_safe if flash[:alert] %>
+
+      <% if devise_mapping.rememberable? -%>
+          <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div><br>
+      <% end -%>
+
+      <div>
+        <%= f.submit "Sign in", :class => 'app_btn' %>
+        <%= link_to 'Cancel', root_path, :class => 'btn' %>
+      </div>
+  <% end %>
+  </br>
+  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+      <%= link_to "Forgot your password?", new_password_path(resource_name), :class => 'forget_pwd_link' %><br />
+  <% end -%>
+  </br>
+  <%= link_to 'Register Account', new_user_registration_path, :class => 'r_link' %>
+</div>

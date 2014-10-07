@@ -1,0 +1,62 @@
+.session_center {
+  display: flex;
+  justify-content: center;
+
+  display: -webkit-flex;
+  -webkit-justify-content: center;
+
+  height: 100vh;
+}
+
+@media all and (min-height: 600px) {
+  .session_center {
+    align-items: center;
+    -webkit-align-items: center;
+    padding-bottom: 80px;
+  }
+}
+
+.session_content {
+  padding: 0 10px;
+  margin: 40px 0;
+
+  .header {
+    margin-bottom: 20px;
+    font-size: 27px;
+    font-family: LatoLight;
+  }
+
+  .forget_pwd_link {
+    &:hover {
+      color: dodgerblue;
+    }
+  }
+
+  .r_link {
+    color: #576eff;
+
+    &:hover {
+      color: #0000e0;
+    }
+  }
+
+  #error_explanation, #flash_notice, #flash_error, #flash_alert {
+    color: red;
+    width: 200px;
+    word-wrap: break-word;
+  }
+}
+
+.registration_session {
+  input[type='email'], input[type='password'], input[type='text'] {
+    width: 205px;
+  }
+
+  #error_explanation {
+    h2 {
+      font-size: 16px;
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+  }
+}

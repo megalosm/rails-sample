@@ -1,0 +1,26 @@
+<% @news_topics.each do |news_topic| %>
+    <div class="news_topic" data-topic-id="<%= news_topic.id %>">
+      <div class="title">
+        <%= link_to show_news_topic_path(news_topic.id), :class => 'news_topic_link' do %>
+            <b><%= news_topic.title %></b>
+        <% end %>
+      </div>
+      <div class="creator">
+        by <%= news_topic.try('creator').try('name') %> · <%= time_ago_in_words(news_topic.created_at) %> ago
+      </div>
+      <div class="context"><%= news_topic.short_context.html_safe %></div>
+      <div class="news_topic_stats">
+        <%= link_to show_news_topic_path(news_topic.id, :state => 'comment'),
+                    :class => 'comment_count' do %>
+            <span class="comment font_icon">&#xe605</span>
+
+            <div class="count comment_count_number"><%= news_topic.comment_count %></div>
+        <% end %>
+        <span class="like font_icon inactive">&#xe606</span>
+
+        <div class="count inactive"><%= news_topic.like_count %></div>
+      </div>
+    </div>
+<% end %>
+<div id="infinite_loading">Infinite Loading...</div>
+<div id="show_next_news_topic">Loading...</div>

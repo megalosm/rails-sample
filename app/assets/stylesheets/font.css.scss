@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'LatoRegular';
+  src: url(font-path('Lato-Regular.ttf')) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LatoBold';
+  src: url(font-path('Lato-Bold.ttf')) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LatoLight';
+  src: url(font-path('Lato-Light.ttf')) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Icon';
+  src: url(font-path('icomoon.ttf')) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

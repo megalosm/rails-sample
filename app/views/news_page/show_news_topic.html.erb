@@ -1,0 +1,82 @@
+<div id="news_page">
+  <div class="news">
+    <div class="title"><b><%= @news_topic.title %></b></div>
+    <div class="creator">
+      by <%= @news_topic.try('creator').try('name') %> · <%= time_ago_in_words(@news_topic.created_at) %> ago
+    </div>
+    <p class="context">
+      <%= @news_topic.context.html_safe %>
+    </p>
+
+    <div id="news_topic_stats_<%= @news_topic.id %>" class="news_topic_stats">
+      <%= link_to show_news_topic_comments_path(@news_topic.id), :title => 'Show Comments',
+                  :class => 'comment_count', :remote => true do %>
+          <span class="comment font_icon">&#xe605</span>
+
+          <div class="count"><%= @news_topic.comment_count %></div>
+      <% end %>
+      <% if current_user %>
+          <% if @news_topic.user_liked_this(current_user.id) %>
+              <div class="like_count user_liked">
+                <span class="like font_icon">&#xe606</span>
+              </div>
+              <div class="count_like"><%= @news_topic.like_count %></div>
+          <% else %>
+              <%= link_to like_news_topic_path(@news_topic.id), :class => 'like_count', :remote => true do %>
+                  <span class="like font_icon">&#xe606</span>
+              <% end %>
+              <div class="count_like"><%= @news_topic.like_count %></div>
+          <% end %>
+      <% else %>
+          <div class="like_count">
+            <span class="like font_icon">&#xe606</span>
+          </div>
+          <div class="count_like"><%= @news_topic.like_count %></div>
+      <% end %>
+      <div class="share_panel">
+        <div class="facebook_btn font_icon">&#xe607</div>
+        <div class="tweet_btn font_icon">&#xe608</div>
+      </div>
+    </div>
+    <div id="news_comments"></div>
+    <% if current_user %>
+        <div class="current_user"><b><%= current_user.name %></b></div>
+        <div class="news_comment_form"><%= render 'news_topic_comments/form' %></div>
+    <% else %>
+        <div class="news_comment_form">
+          <%= link_to 'Sign in', new_user_session_path %> or <%= link_to 'Register', new_user_registration_path %>
+          to post comments
+        </div>
+    <% end %>
+  </div>
+  <div id="top_news">
+    <div id="top_new_panel">
+      <div class="header"><b>Top News</b></div>
+      <% @top_news.each do |top_news| %>
+          <div class="top_news"><%= link_to top_news.title, show_news_topic_path(top_news.id) %></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+    // Show comment
+    if ('<%= params[:state] %>' == 'comment') {
+        $('.comment_count')[0].click();
+        $("#content").animate({ scrollTop: $('.comment_count').offset().top }, 1000);
+    }
+
+    // Share News
+    $('.facebook_btn').click(function () {
+        var title = $('.title b').html();
+        var url = 'https://www.facebook.com/sharer/sharer.php?u=<%=j request.original_url %>';
+//                '&p[images][0]=' + '<%#= asset_path('logo512.png') %>';
+//                '$p[url]=';
+        window.open(url, 'facebook_popup', 'width=500,height=300');
+    })
+
+    $('.tweet_btn').click(function () {
+        var title = $('.title b').html() + '\n';
+        var url = 'https://twitter.com/share?url=<%=j request.original_url %>&text=' + title;
+        window.open(url, 'tweet_popup', 'width=500,height=300');
+    })
+</script>

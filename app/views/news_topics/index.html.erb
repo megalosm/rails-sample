@@ -1,0 +1,76 @@
+<div id="news_main_content">
+  <div id="main_left_content">
+    <div class="action">
+      <%= link_to '+ News topic', new_news_topic_path %>
+    </div>
+    <div class="main_left_menu">News</div>
+  </div>
+  <div id="main_right_content">
+    <div id="top_new_panel">
+      <div class="header"><b>Top News</b></div>
+      <% @top_news.each do |top_news| %>
+          <div class="top_news"><%= link_to top_news.title, show_news_topic_path(top_news.id) %></div>
+      <% end %>
+    </div>
+  </div>
+  <div id="main_center_content">
+    <div id="news_topic_page" class="content">
+      <% @news_main_topics.each do |news_topic| %>
+          <div class="news_topic" data-topic-id="<%= news_topic.id %>">
+            <div class="title">
+              <div class="news_topic_title">
+                <%= link_to show_news_topic_path(news_topic.id), :class => 'news_topic_link' do %>
+                    <b><%= news_topic.title %></b>
+                <% end %>
+              </div>
+              <div class="action">
+                <%= link_to '&#xe602'.html_safe, edit_news_topic_path(news_topic.id),
+                            :class => 'font_icon' %>
+                <%= link_to '&#xe603'.html_safe, news_topic_path(news_topic.id),
+                            :method => 'delete', :class => 'font_icon', :data => {:confirm => 'Are you sure?'} %>
+              </div>
+            </div>
+            <div class="creator">
+              by <%= news_topic.try('creator').try('name') %> · <%= time_ago_in_words(news_topic.created_at) %> ago
+            </div>
+            <div class="context"><%= news_topic.short_context.html_safe %></div>
+            <div class="news_topic_stats">
+              <%= link_to show_news_topic_path(news_topic.id, :state => 'comment'),
+                          :class => 'comment_count' do %>
+                  <span class="comment font_icon">&#xe605</span>
+
+                  <div class="count comment_count_number"><%= news_topic.comment_count %></div>
+              <% end %>
+              <span class="like font_icon inactive">&#xe606</span>
+
+              <div class="count inactive"><%= news_topic.like_count %></div>
+            </div>
+          </div>
+      <% end %>
+      <div id="infinite_loading"></div>
+      <div id="show_next_news_topic">Loading...</div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $('#show_next_news_topic').hide();
+    $('#content').scroll(function () {
+        var $infinite_loading = $('#infinite_loading');
+        if ($infinite_loading.length !== 0) {
+            if (window.infiniteScroll.isScrolledIntoView('#infinite_loading')) {
+                $infinite_loading.remove();
+                $('#show_next_news_topic').show();
+                var last_news_topic_id = $('.news_topic').last().data('topicId');
+                $.getScript('/news_topics/show_more_news_topic/' + last_news_topic_id);
+            }
+        }
+    });
+
+    $('#main_center_content').on('click', '.news_topic', function (e) {
+        if (!$(e.target).hasClass('comment') && !$(e.target).hasClass('comment_count_number')
+                && !$(e.target).hasClass('font_icon')) {
+            $(this).find('.news_topic_link')[0].click();
+        }
+    });
+</script>

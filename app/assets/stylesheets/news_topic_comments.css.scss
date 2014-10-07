@@ -1,0 +1,39 @@
+// Place all the styles related to the news_topic_comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#new_news_topic_comment {
+  .field {
+    margin-bottom: 5px;
+  }
+
+  #news_topic_comment_context {
+    width: 600px;
+    resize: none;
+  }
+}
+
+#news_comments {
+  margin-top: 20px;
+
+  .comment {
+    margin-bottom: 5px;
+    padding: 5px 0;
+
+    .comment_creator {
+      .name {
+        color: dodgerblue;
+      }
+    }
+
+    .created_at {
+      margin-left: 15px;
+      opacity: 0.5;
+      font-size: 12px;
+    }
+  }
+
+  .comment_context {
+    padding: 5px 0;
+  }
+}

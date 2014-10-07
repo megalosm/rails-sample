@@ -1,0 +1,115 @@
+<%= form_for(@news_topic) do |f| %>
+    <% if @news_topic.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@news_topic.errors.count, 'error') %> prohibited this news_topic from being saved:</h2>
+
+          <ul>
+            <% @news_topic.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.text_field :title, :placeholder => 'Title' %>
+    </div>
+    <div class="field">
+      <div id="text_bold" class="font_icon">&#xe601;</div>
+
+      <%= label_tag 'topic_image_upload' do %>
+          <div class="font_icon">
+            &#xe600;
+          </div>
+      <% end %>
+
+      <input id="topic_image_upload" type="file" name="topic_image_upload" data-url="/upload_news_topic_image" multiple>
+
+      <div id="preview_news_topic_btn" class="btn">Preview</div>
+
+      <br>
+      <%= f.text_area :context, :placeholder => 'Context' %>
+
+      <div id="preview_news_topic_context"></div>
+    </div>
+    <div class="field">
+      <%= f.check_box :top_news %>
+      <%= f.label :top_news %>
+    </div>
+    <h3>Main Page Display</h3>
+    <div>
+      <%= f.text_area :short_context, :placeholder => 'Context' %>
+      <div id="preview_news_topic_short_context"></div>
+    </div>
+    </br>
+    <div class="actions">
+      <%= f.submit f.object.new_record? ? 'Create' : 'Update', :class => 'app_btn' %>
+      <%= link_to 'Cancel', news_topics_path, :class => 'btn' %>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    // auto fill in main page display
+    $('#news_topic_context').keyup(function () {
+        $('#news_topic_short_context').val($(this).val());
+    });
+
+    // Add bold tag event
+    $('#text_bold').click(function () {
+        var $news_topic_context = $('#news_topic_context');
+        var current_context = $news_topic_context.val();
+
+        // Get current position of cursor.
+        var selectionStart = $news_topic_context.prop("selectionStart");
+        var selectionEnd = $news_topic_context.prop("selectionEnd");
+
+        var new_context = current_context.slice(0, selectionStart) +
+                '<b>' + current_context.slice(selectionStart, selectionEnd) + '</b>' +
+                current_context.slice(selectionEnd, current_context.length);
+
+        $news_topic_context.val(new_context);
+    });
+
+    // by jquery.fileupload.js
+    $('#topic_image_upload').fileupload({
+        dataType: 'script',
+        add: function (e, data) {
+            // Append Image uploading tag to news_topic_context.
+            var $news_topic_context = $('#news_topic_context');
+            var current_context = $news_topic_context.val();
+
+            var selectionStart = $news_topic_context.prop("selectionStart");
+            var selectionEnd = $news_topic_context.prop("selectionEnd");
+
+            var new_context = current_context.slice(0, selectionStart) +
+                    '![' + data.files[0].name + ']' + current_context.slice(selectionStart, current_context.length);
+
+            $news_topic_context.val(new_context);
+//            data.context = $('#news_topic_context').text('Uploading...').appendTo(document.body);
+            data.submit();
+        }
+    });
+
+    $('#preview_news_topic_btn').click(function () {
+        if ($(this).hasClass('selected')) {
+            $('#preview_news_topic_context').hide();
+            $('#news_topic_context').show();
+            $('#preview_news_topic_short_context').hide();
+            $('#news_topic_short_context').show();
+            $(this).removeClass('selected');
+        } else {
+            $.ajax({
+                url: '/preview_news_topic',
+                type: "POST",
+                data: {
+                    news_topic_context: $('#news_topic_context').val(),
+                    news_topic_short_context: $('#news_topic_short_context').val()
+                },
+                dataType: "script",
+                success: function () {
+                    $('#preview_news_topic_btn').addClass('selected');
+                }
+            });
+        }
+    });
+</script>

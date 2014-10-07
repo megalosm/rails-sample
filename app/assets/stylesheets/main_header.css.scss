@@ -1,0 +1,92 @@
+@import "config.css.scss";
+
+header {
+  height: 43px;
+  min-height: 43px;
+
+  .center {
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid $border_color;
+  }
+}
+
+#h_l {
+  display: inline-block;
+  font-size: 20px;
+  font-family: LatoLight;
+
+  .header_logo {
+    width: 24px;
+    height: 24px;
+    vertical-align: bottom;
+    margin-right: 2px;
+  }
+}
+
+#h_r {
+  position: relative;
+  float: right;
+  padding-top: 5px;
+}
+
+#user_display_name, #user_sign_in {
+  cursor: pointer;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+#user_info_panel {
+  min-width: 180px;
+  background-color: #ffffff;
+  border: 1px solid $border_color;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px $border_color;
+  position: absolute;
+  right: 0;
+  margin-top: 5px;
+  z-index: 9999;
+
+  .name, .email {
+    margin: 10px;
+  }
+
+  .name {
+    font-size: 14px;
+  }
+
+  .email {
+    opacity: 0.5;
+  }
+
+  .action {
+    padding: 10px;
+    border-top: 1px solid $border_color;
+
+    .sign_out_btn {
+      float: right;
+    }
+  }
+}
+
+#h_menu {
+  list-style: none;
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 10px;
+// font-size: 14px;
+  vertical-align: bottom;
+
+  .nev_menu {
+    display: inline-block;
+    margin: 0 15px;
+
+    a:hover, a.selected {
+      color: $base_color;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+$border_color: #e1dfda;
+$gray5_color: #fafafa;
+$gray10_color: #f5f5f5;
+$gray15_color: #f0f0f0;
+$gray20_color: #ebebeb;
+$gray25_color: #e6e6e6;
+$gray30_color: #e1e1e1;
+$gray40_color: #d7d7d7;
+$gray60_color: #c3c3c3;
+$gray70_color: #b9b9b9;
+$gray100_color: #9b9b9b;
+$gray130_color: #7d7d7d;
+$gray160_color: #5f5f5f;
+$gray170_color: #555555;
+$gray180_color: #4b4b4b;
+$gray200_color: #373737;
+$gray230_color: #191919;
+
+$base_color: #13eb32;
+$base50_color: #13cd28;
+$base70_color: #13b928;
+$base140_color: #13731f;
+
+$bg_blue_color: #f6f8fe;
+
+$orange_color: orange;
+
+$green10_color: #46a546;
+$green20_color: #add700;
+
+$red10_color: #c14b37;
+$red20_color: #FF5D55;
+
+//$failed_color: #ffa000;
+//$auton_color: #faf300;
+//$bug_color: #ff0019;
+//$passed_color: #8fcf37;
+//$not_done_color: #b9b9b9;
+
+$main_padding_left_right: 25px;
+$main_width: 1024px;
+
+@mixin disable_text_highlighting {
+  -webkit-touch-callout: none;
+  -webkit-user-selected: none;
+  -khtml-user-selected: none;
+  -moz-user-selected: none;
+  -ms-user-selected: none;
+  user-selected: none;
+}
+
+@mixin truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin menu_layout {
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: inline-block;
+  }
+}

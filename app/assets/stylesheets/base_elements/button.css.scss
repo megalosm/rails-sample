@@ -1,0 +1,102 @@
+@import "config.css.scss";
+
+@mixin btn {
+  display: inline-block;
+  padding: 4px 10px;
+  margin-bottom: 0;
+  //font-size: 13px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  //border-bottom-color: #b3b3b3;
+  border-radius: 3px;
+  background-repeat: repeat-x;
+  text-decoration: none;
+  border: 1px solid #D5D5D5;
+}
+
+.btn {
+  @include btn;
+  color: #333333;
+  background-color: #e3e3e3;
+  border: 1px solid #D5D5D5;
+}
+
+.btn:hover,
+.btn:active,
+.btn.active,
+.btn.disabled,
+.btn[disabled] {
+  outline: none;
+  background-color: #e6e6e6;
+}
+
+.btn:active,
+.btn.active {
+  background-color: #cccccc;
+}
+
+.btn:hover {
+  color: #191919;
+  text-decoration: none;
+  background-color: #cdcdcd;
+}
+
+.btn:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.btn.active,
+.btn:active {
+  background-color: #e6e6e6;
+  background-image: none;
+  outline: 0;
+}
+
+.btn.disabled,
+.btn[disabled] {
+  cursor: default;
+  background-color: #e6e6e6;
+  background-image: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+}
+
+@mixin app_btn {
+  color: #ffffff;
+  background-color: $base50_color;
+  border: 1px solid $base50_color;
+}
+
+.app_btn {
+  @include btn;
+  @include app_btn;
+
+  &.disabled,
+  &.app_btn[disabled] {
+    cursor: default;
+    background-image: none;
+    opacity: 0.35;
+
+    &:hover {
+      background-color: $base50_color;
+    }
+  }
+
+  &:hover {
+    background-color: $base70_color;
+  }
+}
+
+.red_btn {
+  @include btn;
+  color: #ffffff;
+  background-color: #E04732;
+  border: 1px solid #E04732;
+
+  &:hover {
+    background-color: $red10_color;
+  }
+}

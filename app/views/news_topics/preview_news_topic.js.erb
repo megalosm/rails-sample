@@ -1,0 +1,4 @@
+$('#news_topic_context').hide();
+$('#news_topic_short_context').hide();
+$('#preview_news_topic_context').html('<%=j @news_topic_context.html_safe %>').show();
+$('#preview_news_topic_short_context').html('<%=j @news_topic_short_context.html_safe %>').show();
