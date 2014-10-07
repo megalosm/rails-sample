@@ -6,7 +6,7 @@
 
 3. $ rake db:setup (for run db:create, db:schema:load, db:seed)
 
-4. $ bundle exec cucumber (for run automated tests)
+4. $ bundle exec cucumber (for run automated testing)
 
 5. Test app (See username and password in seed file)
 
@@ -19,7 +19,7 @@
 
 * jQuery and CoffeeScript
 
-* Cucumber (Use gem faker and gem factory_girl for generate data)
+* Cucumber (Use faker and factory_girl for generate data)
 
 * Devise
 
